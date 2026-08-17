@@ -1,0 +1,3 @@
+I am an undergraduate student at the School of Architecture, Harbin Institute of Technology, Shenzhen, where I am advised by [Prof. Yongxi Gong](https://scholar.google.com/citations?user=_NJ9QPcAAAAJ&hl=en) and [Associate Prof. Lulu Chen](https://homepage.hit.edu.cn/CHENLulu?lang=zh).
+
+My research interests lie in urban geography, human mobility, social sensing, and geospatial big data. I am particularly interested in understanding urban spatial structure and mobility patterns through large-scale geospatial and mobile phone signaling data.

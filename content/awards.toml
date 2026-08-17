@@ -1,0 +1,27 @@
+type = "card"
+title = "Awards"
+description = "Honors and awards I have received."
+
+[[items]]
+title = "National Scholarship"
+subtitle = "Ministry of Education of the People's Republic of China"
+date = "2024"
+content = "Description of the award."
+
+[[items]]
+title = "Example Award"
+subtitle = "Organization"
+date = "2024"
+content = "Description of the award."
+
+[[items]]
+title = "Example Award"
+subtitle = "Organization"
+date = "2023"
+content = "Description of the award."
+
+[[items]]
+title = "Example Award"
+subtitle = "Organization"
+date = "2022"
+content = "Description of the award."
