@@ -8,7 +8,6 @@ import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import LanguageToggle from '@/components/ui/LanguageToggle';
 import type { SiteConfig } from '@/lib/config';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 import { useMessages } from '@/lib/i18n/useMessages';
@@ -222,11 +221,17 @@ export default function Navigation({
 
                         return (
                           <Link
-                            key={item.target}
+                            key={item.href}
                             href={href}
                             data-nav-href={href}
-                            prefetch={true}
-                            onClick={() => enableOnePageMode && setActiveHash(`#${item.target}`)}
+                            prefetch={item.type !== 'link'}
+                            target={item.type === 'link' ? '_blank' : undefined}
+                            rel={item.type === 'link' ? 'noopener noreferrer' : undefined}
+                            onClick={() =>
+                              enableOnePageMode &&
+                              item.type === 'page' &&
+                              setActiveHash(`#${item.target}`)
+                            }
                             onMouseEnter={() => setHoveredHref(href)}
                             className={cn(
                               'relative px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150',
@@ -242,13 +247,11 @@ export default function Navigation({
                         );
                       })}
                     </div>
-                    <LanguageToggle i18n={i18n} />
                     <ThemeToggle />
                   </div>
                 </div>
 
                 <div className="lg:hidden flex items-center space-x-2">
-                  <LanguageToggle i18n={i18n} />
                   <ThemeToggle />
                   <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-primary hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent transition-colors duration-200">
                     <span className="sr-only">{messages.navigation.openMainMenu}</span>
@@ -292,7 +295,7 @@ export default function Navigation({
 
                       return (
                         <motion.div
-                          key={item.target}
+                          key={item.href}
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}
@@ -300,14 +303,10 @@ export default function Navigation({
                           <Disclosure.Button
                             as={Link}
                             href={href}
-                            prefetch={true}
-                            onClick={() => enableOnePageMode && setActiveHash(item.href === '/' ? '' : `#${item.target}`)}
-                            className={cn(
-                              'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
-                              isActive
-                                ? 'text-primary bg-accent/10 border-l-4 border-accent'
-                                : 'text-neutral-600 hover:text-primary hover:bg-neutral-50'
-                            )}
+                            prefetch={item.type !== 'link'}
+                            target={item.type === 'link' ? '_blank' : undefined}
+                            rel={item.type === 'link' ? 'noopener noreferrer' : undefined}
+                            onClick={() => enableOnePageMode && item.type === 'page' && setActiveHash(item.href === '/' ? '' : `#${item.target}`)}
                           >
                             {item.title}
                           </Disclosure.Button>

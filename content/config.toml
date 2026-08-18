@@ -2,12 +2,12 @@
 title = "Junyang Zhao"
 description = "Academic homepage of Junyang Zhao."
 favicon = "/favicon.svg"
-last_updated = "November 18, 2025"
+last_updated = "August 18, 2026"
 
 [author]
 name = "Junyang Zhao"
 title = "Undergraduate Student"
-institution = "Harbin Institute of Techonology, Shenzhen"
+institution = "Harbin Institute of Technology, Shenzhen"
 avatar = "/bio.jpg"
 
 [social]
@@ -33,20 +33,13 @@ enable_likes = true
 enable_one_page_mode = false
 
 [i18n]
-enabled = true
-locales = ["zh", "en"]
+enabled = false
+locales = ["en"]
 default_locale = "en"
-# "auto" means the locale will be determined by the browser's language setting, "fixed" means the locale will be fixed to the default locale (but can be switched still, if you want to disable, set "enable=false")
-mode = "auto"
+mode = "fixed"
 fixed_locale = "en"
-# If true, PRISM will remember user's language preference in browser's localStorage
-persist = true
-# Show a language switcher on the top right corner
-switcher = true
-
-[i18n.labels]
-zh = "中文"
-en = "English"
+persist = false
+switcher = false
 
 [[navigation]]
 title = "About"
@@ -74,6 +67,5 @@ href = "/services"
 
 [[navigation]]
 title = "CV"
-type = "page"
-target = "cv"
-href = "/cv"
+type = "link"
+href = "cv.pdf"

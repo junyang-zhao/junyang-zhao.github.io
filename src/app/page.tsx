@@ -5,22 +5,30 @@ import HomePageClient, { type HomePageLocaleData } from '@/components/home/HomeP
 import { Publication } from '@/types/publication';
 import { BasePageConfig, PublicationPageConfig, TextPageConfig, CardPageConfig } from '@/types/page';
 import { getRuntimeI18nConfig } from '@/lib/i18n/config';
+import { EducationItem } from '@/components/home/Education';
 
 interface SectionConfig {
   id: string;
-  type: 'markdown' | 'publications' | 'list';
+  type: 'markdown' | 'publications' | 'list' | 'education';
   title?: string;
   source?: string;
   filter?: string;
   limit?: number;
   content?: string;
   publications?: Publication[];
+  educationItems?: EducationItem[];
   items?: NewsItem[];
 }
 
 interface NewsItem {
   date: string;
   content: string;
+}
+
+interface EducationItem {
+  period: string;
+  institution: string;
+  degree: string;
 }
 
 type PageData =
@@ -53,6 +61,16 @@ function processSections(sections: SectionConfig[], locale?: string): SectionCon
         return {
           ...section,
           items: newsData?.news || [],
+        };
+      }
+      case 'education': {
+        const educationData = section.source
+          ? getTomlContent<{ education: EducationItem[] }>(section.source, locale)
+          : null;
+
+        return {
+          ...section,
+          educationItems: educationData?.education || [],
         };
       }
       default:
