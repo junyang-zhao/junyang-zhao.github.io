@@ -25,12 +25,6 @@ interface NewsItem {
   content: string;
 }
 
-interface EducationItem {
-  period: string;
-  institution: string;
-  degree: string;
-}
-
 type PageData =
   | { type: 'about'; id: string; sections: SectionConfig[] }
   | { type: 'publication'; id: string; config: PublicationPageConfig; publications: Publication[] }
