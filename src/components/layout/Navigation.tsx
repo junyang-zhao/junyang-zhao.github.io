@@ -306,7 +306,17 @@ export default function Navigation({
                             prefetch={item.type !== 'link'}
                             target={item.type === 'link' ? '_blank' : undefined}
                             rel={item.type === 'link' ? 'noopener noreferrer' : undefined}
-                            onClick={() => enableOnePageMode && item.type === 'page' && setActiveHash(item.href === '/' ? '' : `#${item.target}`)}
+                            onClick={() =>
+                              enableOnePageMode &&
+                              item.type === 'page' &&
+                              setActiveHash(item.href === '/' ? '' : `#${item.target}`)
+                            }
+                            className={cn(
+                              'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
+                              isActive
+                                ? 'text-primary bg-accent/10 border-l-4 border-accent'
+                                : 'text-neutral-600 hover:text-primary hover:bg-neutral-50'
+                            )}
                           >
                             {item.title}
                           </Disclosure.Button>
