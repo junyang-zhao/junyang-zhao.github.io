@@ -46,34 +46,10 @@
 
     .page-shell {
       min-height: 100vh;
+      overflow: visible;
     }
 
-    /* ---------- Header ---------- */
-
-    .site-header {
-      padding: 34px 24px 26px;
-    }
-
-    .site-header__inner {
-      width: min(var(--page-width), calc(100% - 8px));
-      margin: 0 auto;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 40px;
-    }
-
-    .site-name {
-      color: #111;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 30px;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .site-name:hover {
-      text-decoration: none;
-    }
+    /* ---------- Navigation ---------- */
 
     .site-nav {
       display: flex;
@@ -96,20 +72,48 @@
       color: #111;
     }
 
+    .content-nav {
+      min-height: 33px;
+      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: 23px;
+      line-height: 1.1;
+    }
+
     /* ---------- Main layout ---------- */
 
     .site-main {
       width: min(var(--page-width), calc(100% - 48px));
-      margin: 8px auto 54px;
+      margin: 28px auto 54px;
       display: grid;
       grid-template-columns: var(--left-col) minmax(0, 1fr);
       gap: var(--gap);
       align-items: start;
+      overflow: visible;
     }
 
     .profile-column {
-      position: sticky;
+      position: fixed;
       top: 28px;
+      left: max(24px, calc((100vw - var(--page-width)) / 2));
+      width: var(--left-col);
+      height: fit-content;
+      z-index: 10;
+    }
+
+    .profile-name {
+      display: block;
+      margin: 0 0 22px;
+      color: #111;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.1;
+      text-decoration: none;
+    }
+
+    .profile-name:hover {
+      text-decoration: none;
     }
 
     .profile-photo {
@@ -139,7 +143,31 @@
       margin-top: 11px !important;
     }
 
+    .profile-meta .profile-quote {
+      margin-top: 55px;
+      color: #444;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      font-style: italic;
+      line-height: 1.5;
+      min-height: 1.6em;
+      white-space: nowrap;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      margin-left: 1px;
+      font-style: normal;
+      animation: cursor-blink 0.8s steps(1) infinite;
+    }
+
+    @keyframes cursor-blink {
+      0%, 48% { opacity: 1; }
+      49%, 100% { opacity: 0; }
+    }
+
     .content-column {
+      grid-column: 2;
       min-width: 0;
     }
 
@@ -277,22 +305,18 @@
     /* ---------- Responsive ---------- */
 
     @media (max-width: 760px) {
-      .site-header {
-        padding-top: 26px;
-      }
-
-      .site-header__inner {
-        display: block;
-      }
-
-      .site-name {
-        display: inline-block;
-        margin-bottom: 16px;
+      .profile-name {
+        font-size: 28px;
+        margin-bottom: 14px;
       }
 
       .site-nav {
         justify-content: flex-start;
         line-height: 2;
+      }
+
+      .content-nav {
+        margin-bottom: 18px;
       }
 
       .site-nav a {
@@ -308,7 +332,12 @@
 
       .profile-column {
         position: static;
+        width: auto;
         max-width: 260px;
+      }
+
+      .content-column {
+        grid-column: auto;
       }
 
       .content-section h2 {
@@ -321,18 +350,13 @@
         font-size: 14.5px;
       }
 
-      .site-header {
-        padding-left: 18px;
-        padding-right: 18px;
-      }
-
       .site-main {
         width: auto;
         margin-left: 18px;
         margin-right: 18px;
       }
 
-      .site-name {
+      .profile-name {
         font-size: 28px;
       }
     }
@@ -342,28 +366,7 @@
 <body>
   <div class="page-shell">
 
-    <header class="site-header">
-      <div class="site-header__inner">
-        <a class="site-name" href="#top">Junyang Zhao</a>
 
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a class="active" href="#top">Home</a>
-
-          <a
-            href="https://scholar.google.com/citations?hl=en&amp;view_op=list_works&amp;gmla=AERr9JE_uBMuE2ba9BW6blmgQsxeKwzUBGR-fkBS-qN2UwAaxlio353KZ9uU-Ofj5EX4NHhpNho1WwsepeOZIeUT0-VG&amp;user=pStpHQIAAAAJ"
-            target="_blank"
-            rel="noreferrer"
-          >Google Scholar</a>
-
-          <!--
-            If you later provide a ResearchGate profile URL,
-            add it here in the same format as Google Scholar.
-          -->
-
-          <a href="cv.pdf" target="_blank" rel="noreferrer">CV</a>
-        </nav>
-      </div>
-    </header>
 
     <main id="top" class="site-main">
 
@@ -373,6 +376,8 @@
            and name it exactly: bio.jpg
            ========================================================= -->
       <aside class="profile-column" aria-label="Profile">
+        <a class="profile-name" href="#top">Junyang Zhao</a>
+
         <img
           class="profile-photo"
           src="bio.jpg"
@@ -381,7 +386,7 @@
 
         <div class="profile-meta">
           <p>Undergraduate Researcher,</p>
-          <p class="institution-line">Harbin Institute of Technology, Shenzhen</p>
+          <p class="institution-line">Harbin Institute of Technology, Shenzhen,</p>
           <p>Shenzhen, China</p>
 
           <p class="profile-email">
@@ -389,6 +394,10 @@
             <a href="mailto:zhao_junyang@stu.hit.edu.cn">
               zhao_junyang@stu.hit.edu.cn
             </a>
+          </p>
+
+          <p class="profile-quote" aria-label="Personal motto">
+            <span id="typing-quote"></span><span class="typing-cursor">|</span>
           </p>
         </div>
       </aside>
@@ -398,6 +407,18 @@
            RIGHT CONTENT COLUMN
            ========================================================= -->
       <section class="content-column">
+
+        <nav class="site-nav content-nav" aria-label="Primary navigation">
+          <a class="active" href="#top">Home</a>
+
+          <a
+            href="https://scholar.google.com/citations?hl=en&amp;view_op=list_works&amp;gmla=AERr9JE_uBMuE2ba9BW6blmgQsxeKwzUBGR-fkBS-qN2UwAaxlio353KZ9uU-Ofj5EX4NHhpNho1WwsepeOZIeUT0-VG&amp;user=pStpHQIAAAAJ"
+            target="_blank"
+            rel="noreferrer"
+          >Google Scholar</a>
+
+          <a href="cv.pdf" target="_blank" rel="noreferrer">CV</a>
+        </nav>
 
         <!-- About -->
         <section class="content-section" id="about">
@@ -573,5 +594,45 @@
       });
     })();
   </script>
+
+  <script>
+    (() => {
+      const target = document.getElementById("typing-quote");
+      if (!target) return;
+
+      const text = '"Be young, be ambitious."';
+      let index = 0;
+      let deleting = false;
+
+      const type = () => {
+        if (!deleting) {
+          index += 1;
+          target.textContent = text.slice(0, index);
+
+          if (index >= text.length) {
+            deleting = true;
+            setTimeout(type, 2200);
+            return;
+          }
+
+          setTimeout(type, 75);
+        } else {
+          index -= 1;
+          target.textContent = text.slice(0, index);
+
+          if (index <= 0) {
+            deleting = false;
+            setTimeout(type, 650);
+            return;
+          }
+
+          setTimeout(type, 36);
+        }
+      };
+
+      setTimeout(type, 450);
+    })();
+  </script>
+
 </body>
 </html>
