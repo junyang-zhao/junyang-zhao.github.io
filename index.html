@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Junyang Zhao — Academic Homepage">
+  <title>Junyang Zhao</title>
+
+  <style>
+    :root {
+      --page-width: 960px;
+      --left-col: 260px;
+      --gap: 38px;
+      --text: #222;
+      --muted: #666;
+      --link: #2b5d8a;
+      --border: #ececec;
+      --bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+    }
+
+    /* ---------- Header ---------- */
+
+    .site-header {
+      padding: 34px 24px 26px;
+    }
+
+    .site-header__inner {
+      width: min(var(--page-width), calc(100% - 8px));
+      margin: 0 auto;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .site-name {
+      color: #111;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .site-name:hover {
+      text-decoration: none;
+    }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 14px;
+    }
+
+    .site-nav a {
+      color: #3f3f3f;
+      margin-left: 22px;
+    }
+
+    .site-nav a:first-child {
+      margin-left: 0;
+    }
+
+    .site-nav a.active,
+    .site-nav a:hover {
+      color: #111;
+    }
+
+    /* ---------- Main layout ---------- */
+
+    .site-main {
+      width: min(var(--page-width), calc(100% - 48px));
+      margin: 8px auto 54px;
+      display: grid;
+      grid-template-columns: var(--left-col) minmax(0, 1fr);
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    .profile-column {
+      position: sticky;
+      top: 28px;
+    }
+
+    .profile-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0 0 20px;
+      object-fit: cover;
+    }
+
+    .profile-meta {
+      color: #333;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .profile-meta p {
+      margin: 0;
+    }
+
+    .institution-line {
+      white-space: nowrap;
+    }
+
+    .profile-email {
+      margin-top: 11px !important;
+    }
+
+    .content-column {
+      min-width: 0;
+    }
+
+    .content-section {
+      margin-bottom: 31px;
+    }
+
+    .content-section h2 {
+      margin: 0 0 13px;
+      color: #111;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .content-section p {
+      margin: 0 0 11px;
+      line-height: 1.65;
+    }
+
+    /* ---------- News ---------- */
+
+    .news-list,
+    .publication-list,
+    .simple-list {
+      margin: 0;
+      padding-left: 23px;
+    }
+
+    .news-list li,
+    .simple-list li {
+      margin-bottom: 7px;
+      line-height: 1.65;
+    }
+
+    .news-date {
+      font-weight: 700;
+    }
+
+    .more-button {
+      margin-top: 3px;
+      padding: 2px 10px;
+      border: 1px solid #bdbdbd;
+      border-radius: 3px;
+      background: #f7f7f7;
+      color: #222;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .more-button:hover {
+      background: #efefef;
+    }
+
+    .is-hidden {
+      display: none;
+    }
+
+    /* ---------- Education ---------- */
+
+    .education-group {
+      margin-bottom: 18px;
+    }
+
+    .education-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .education-label {
+      margin: 0 0 5px;
+      color: #777;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .education-title {
+      margin-bottom: 1px !important;
+      font-weight: 700;
+    }
+
+    .education-detail {
+      margin-bottom: 1px !important;
+      color: var(--muted);
+    }
+
+    .advisor-line {
+      margin-top: 3px !important;
+      color: #444;
+    }
+
+    /* ---------- Publications ---------- */
+
+    .publication-links {
+      margin-top: -3px !important;
+      margin-bottom: 12px !important;
+    }
+
+    .pub-year {
+      margin-top: 14px;
+    }
+
+    .pub-year h3 {
+      margin: 0 0 7px;
+      color: #222;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .publication-list li {
+      margin-bottom: 12px;
+      line-height: 1.65;
+    }
+
+    .paper-link {
+      white-space: nowrap;
+      margin-left: 4px;
+      font-weight: 600;
+    }
+
+    /* ---------- Footer ---------- */
+
+    .site-footer {
+      margin-top: 34px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      color: #777;
+      font-size: 12px;
+    }
+
+    /* ---------- Responsive ---------- */
+
+    @media (max-width: 760px) {
+      .site-header {
+        padding-top: 26px;
+      }
+
+      .site-header__inner {
+        display: block;
+      }
+
+      .site-name {
+        display: inline-block;
+        margin-bottom: 16px;
+      }
+
+      .site-nav {
+        justify-content: flex-start;
+        line-height: 2;
+      }
+
+      .site-nav a {
+        margin-left: 0;
+        margin-right: 18px;
+      }
+
+      .site-main {
+        width: min(100% - 34px, 680px);
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .profile-column {
+        position: static;
+        max-width: 260px;
+      }
+
+      .content-section h2 {
+        font-size: 23px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      body {
+        font-size: 14.5px;
+      }
+
+      .site-header {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .site-main {
+        width: auto;
+        margin-left: 18px;
+        margin-right: 18px;
+      }
+
+      .site-name {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-shell">
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-name" href="#top">Junyang Zhao</a>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a class="active" href="#top">Home</a>
+
+          <a
+            href="https://scholar.google.com/citations?hl=en&amp;view_op=list_works&amp;gmla=AERr9JE_uBMuE2ba9BW6blmgQsxeKwzUBGR-fkBS-qN2UwAaxlio353KZ9uU-Ofj5EX4NHhpNho1WwsepeOZIeUT0-VG&amp;user=pStpHQIAAAAJ"
+            target="_blank"
+            rel="noreferrer"
+          >Google Scholar</a>
+
+          <!--
+            If you later provide a ResearchGate profile URL,
+            add it here in the same format as Google Scholar.
+          -->
+
+          <a href="cv.pdf" target="_blank" rel="noreferrer">CV</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="site-main">
+
+      <!-- =========================================================
+           LEFT PROFILE COLUMN
+           Put your portrait in the same folder as this file
+           and name it exactly: bio.jpg
+           ========================================================= -->
+      <aside class="profile-column" aria-label="Profile">
+        <img
+          class="profile-photo"
+          src="bio.jpg"
+          alt="Portrait of Junyang Zhao"
+        >
+
+        <div class="profile-meta">
+          <p>Undergraduate Researcher,</p>
+          <p class="institution-line">Harbin Institute of Technology, Shenzhen</p>
+          <p>Shenzhen, China</p>
+
+          <p class="profile-email">
+            E-mail:
+            <a href="mailto:zhao_junyang@stu.hit.edu.cn">
+              zhao_junyang@stu.hit.edu.cn
+            </a>
+          </p>
+        </div>
+      </aside>
+
+
+      <!-- =========================================================
+           RIGHT CONTENT COLUMN
+           ========================================================= -->
+      <section class="content-column">
+
+        <!-- About -->
+        <section class="content-section" id="about">
+          <h2>About Me</h2>
+
+          <p>
+            I am an undergraduate researcher at
+            <a href="https://www.hitsz.edu.cn/" target="_blank" rel="noreferrer">
+              Harbin Institute of Technology, Shenzhen
+            </a>.
+            My research interests focus on urban analytics, human mobility,
+            spatial interaction, social sensing, and geospatial big data.
+          </p>
+
+          <p>
+            I am particularly interested in understanding how physical and
+            institutional boundaries shape urban mobility and spatial interaction,
+            and in developing quantitative geographic methods for representing
+            and explaining these effects.
+          </p>
+        </section>
+
+
+        <!-- News -->
+        <section class="content-section" id="news">
+          <h2>News</h2>
+
+          <ul class="news-list">
+            <li>
+              <span class="news-date">2026.08:</span>
+              Our work on a representation-explanation framework for flow-based
+              border effects was accepted by
+              <em>Computers, Environment and Urban Systems</em>.
+            </li>
+
+            <!-- Add older news below and keep class="news-extra is-hidden" -->
+            <li class="news-extra is-hidden">
+              <span class="news-date">2025:</span>
+              Add an earlier news item here.
+            </li>
+          </ul>
+
+          <button
+            class="more-button"
+            id="news-toggle"
+            type="button"
+            aria-expanded="false"
+          >More</button>
+        </section>
+
+
+        <!-- Education -->
+        <section class="content-section" id="education">
+          <h2>Education</h2>
+
+          <div class="education-group">
+            <p class="education-title">
+              Harbin Institute of Technology, Shenzhen
+            </p>
+
+            <p class="education-detail">
+              B.Arch. in Architecture · Sep. 2023 – Present
+            </p>
+
+            <p class="education-detail">
+              Shenzhen, China
+            </p>
+
+            <p class="advisor-line">
+              <strong>Advisor:</strong>
+              Prof. Yongxi Gong
+            </p>
+          </div>
+
+          <div class="education-group">
+            <p class="education-title">
+              Harbin Institute of Technology
+            </p>
+
+            <p class="education-detail">
+              Exchange Student · Sep. 2025 – Aug. 2026
+            </p>
+
+            <p class="education-detail">
+              Harbin, China
+            </p>
+
+            <p class="advisor-line">
+              <strong>Advisor:</strong>
+              Assoc. Prof. Lulu Chen
+            </p>
+          </div>
+        </section>
+
+
+        <!-- Publications -->
+        <section class="content-section" id="publications">
+          <h2>Selected Publications</h2>
+
+          <p class="publication-links">
+            <a
+              href="https://scholar.google.com/citations?hl=en&amp;view_op=list_works&amp;gmla=AERr9JE_uBMuE2ba9BW6blmgQsxeKwzUBGR-fkBS-qN2UwAaxlio353KZ9uU-Ofj5EX4NHhpNho1WwsepeOZIeUT0-VG&amp;user=pStpHQIAAAAJ"
+              target="_blank"
+              rel="noreferrer"
+            >[Full publications]</a>
+          </p>
+
+          <div class="pub-year">
+            <h3>2027</h3>
+
+            <ul class="publication-list">
+              <li>
+                <strong>Zhao Junyang</strong>, Zhaodong Zhang, Xixiang Wen,
+                Mengwei Xin, Yongxi Gong#, and Yu Liu. 2027.
+                “A Representation-Explanation Framework for Flow-Based Border Effects
+                on Intra-Urban Commuting Using Geographically Weighted Additive
+                Gravity Model and Machine Learning.”
+                <em>Computers, Environment and Urban Systems</em>
+                131: 102516.
+                DOI:
+                <a
+                  href="https://doi.org/10.1016/j.compenvurbsys.2026.102516"
+                  target="_blank"
+                  rel="noreferrer"
+                >10.1016/j.compenvurbsys.2026.102516</a>.
+                <a
+                  class="paper-link"
+                  href="https://www.sciencedirect.com/science/article/pii/S0198971526001183"
+                  target="_blank"
+                  rel="noreferrer"
+                >[Link]</a>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+
+        <!-- Honors -->
+        <section class="content-section" id="awards">
+          <h2>Honors and Awards</h2>
+
+          <ul class="simple-list">
+            <li>National Scholarship, Ministry of Education [Top 1%]</li>
+            <li>First-Class People's Scholarship, Harbin Institute of Technology Shenzhen [Top 5%]</li>
+          </ul>
+        </section>
+
+
+        <footer class="site-footer">
+          <p>© 2026 Junyang Zhao.</p>
+        </footer>
+
+      </section>
+    </main>
+  </div>
+
+
+  <script>
+    (() => {
+      const button = document.getElementById("news-toggle");
+      if (!button) return;
+
+      button.addEventListener("click", () => {
+        const extras = [...document.querySelectorAll(".news-extra")];
+        const willOpen = button.getAttribute("aria-expanded") !== "true";
+
+        extras.forEach((item) => {
+          item.classList.toggle("is-hidden", !willOpen);
+        });
+
+        button.setAttribute("aria-expanded", String(willOpen));
+        button.textContent = willOpen ? "Less" : "More";
+      });
+    })();
+  </script>
+</body>
+</html>
